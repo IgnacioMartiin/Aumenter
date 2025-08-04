@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aumenter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav>
+        <input id="inputAumento" type="number" value="10" inputmode="numeric" pattern="[0-9]*">
+        <button id="btnNuevo">Nuevo</button>
+        <button class="btnGenerar">Generar</button>
+    </nav>
+    <section id="section2">
+        <button class="btnCerrar ">✕</button>
+        <form id="form2" action="">
+            <div id="divForm">
+                <textarea name="" id="txtArea2"></textarea>
+            </div>
+        </form>
+    </section>
+
+    <section id="section1">
+        <form id="form1" action="">
+            <div id="divForm">
+                <textarea name="" id="txtArea1"></textarea>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        let inputAumento = Number(document.getElementById("inputAumento").value);
+
+        function aumentarPreciosUSD(texto, aumento = 10) {
+            return texto.replace(/[\$＄]\s*([0-9]+)/g, (match, precioOriginal) => {
+                const nuevoPrecio = parseInt(precioOriginal, 10) + aumento;
+                return `$${nuevoPrecio}`;
+            });
+        }
+        document.querySelector('.btnCerrar').addEventListener('mousedown', function () {
+            document.getElementById('section2').style.display = 'none';
+        });
+
+        document.querySelector('#btnNuevo').addEventListener('mousedown', function () {
+            document.querySelector('#txtArea1').value = "";
+        });
+
+        let txtArea2 = document.getElementById('txtArea2');
+
+        let btnGenerar = document.getElementById('btnGenerar');
+
+        document.querySelector(".btnGenerar").addEventListener('mousedown', function () {
+            let mensajeOriginal = document.getElementById('txtArea1').value;
+            let inputAumento = Number(document.getElementById("inputAumento").value);
+            document.querySelector('#txtArea2').value = aumentarPreciosUSD(mensajeOriginal, inputAumento);
+            document.getElementById('section2').style.display = 'block'
+        });
+
+    </script>
+</body>
+
+</html>
