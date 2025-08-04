@@ -12,6 +12,7 @@
     <nav>
         <input id="inputAumento" type="number" value="10" inputmode="numeric" pattern="[0-9]*">
         <button id="btnNuevo">Nuevo</button>
+        <button id="btnSelect">Seleccionar</button>
         <button class="btnGenerar">Generar</button>
     </nav>
     <section id="section2">
@@ -58,7 +59,12 @@
             document.querySelector('#txtArea2').value = aumentarPreciosUSD(mensajeOriginal, inputAumento);
             document.getElementById('section2').style.display = 'block'
         });
-
+        
+        document.getElementById('btnSelect').addEventListener('click', function () {
+            const textarea = document.getElementById('txtArea1');
+            textarea.focus();
+            textarea.select();
+        });
     </script>
 </body>
 
